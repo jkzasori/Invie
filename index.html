@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>INVIE - Tus Mejores Guitarras T</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Allerta|Montserrat" rel="stylesheet">
 </head>
@@ -12,9 +13,10 @@
 	<section id="portada" class="portada background "><!-- Portada -->
 		<header id="header" class="header contenedor">
 		<figure class="logo"><!-- Logo-->
-			<img src="img/invie.png" alt="Invie Logo" width="186" height="60">
+			<img src="img/invie.png" srcset="img/invie.png 1x, img/invie2x.png 2x" alt="Invie Logo" width="186" height="60">
 		</figure>
-		<nav class="menu"><!-- Logo-->
+		<span id="burguer-button" class="burguer-button icon-menu "></span>
+		<nav class="menu" id="menu"><!-- Logo-->
 			<ul>
 				<li><a href="index.html">Home</a></li>
 				<li><a href="#guitarras">Guitarrras</a></li>
@@ -31,8 +33,19 @@
 	</section>
 <section id="guitarras" class="guitarras contenedor"><!-- Guitarras -->
 	<h2>Nuestra guitarras</h2>
+	<div class="video-de-contenedor">
+		<div class="video-de">
+			<div class="video-resposive-contenedor ">
+				<iframe class="video-responsive-src" width="560" height="315" src="https://www.youtube.com/embed/TMIws86ZLyk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+			</div>	
+		</div>
+	</div>
+	
+	
+	
+	<!-- <video src="video/320x240.ogg"></video> -->
 	<article class="guitarra ">
-		<img class="left" src="img/invie-acustica.png" width="350"  alt="">
+		<img class="left" data-src="img/invie-acustica.png|img/invie-acustica2x.png" width="350"  alt="Acustica">
 		<div class="contenedor-guitarra-a">
 			<h3 class="titulo-b">Invie Acustica</h3>
 			<ol>
@@ -44,7 +57,7 @@
 		
 	</article>
 	<article class="guitarra b">
-		<img class="right" src="img/invie-classic.png" width="350"   alt="">
+		<img class="right" data-src="img/invie-classic.png|img/invie-classic2x.png"  width="350"   alt="Classic">
 		<div class="contenedor-guitarra-b">
 			<h3 class="titulo-b">Invie Classic</h3>
 			<ol>
@@ -59,7 +72,7 @@
 <footer id="footer" class="footer"><!-- Footer -->
 	<div class="contenedor">
 		<div class="contacto">
-			<img src="img/invie-white.png" alt="logo blanco">
+			<img data-src="img/invie-white.png|img/invie-white2x.png"  alt="logo blanco">
 			<a href="tel:+1234567890"><strong>Teléfono</strong> <span>1234567890</span></a>
 
 			<a href="mailto:contago@algo.com"><strong>E-mail</strong><span>contago@algo.com</span></a>
@@ -98,7 +111,7 @@
 			
 			<div class="col2">
 				<label for="comentarios">Comentarios</label>
-				<textarea name="comentarios" id="comentarios" cols="30" rows="7"></textarea>
+				<textarea name="comentarios" id="comentarios" cols="25" rows="7"></textarea>
 				<input class="button" type="submit" name="" value="Enviar">
 			</div>
 			
@@ -106,5 +119,49 @@
 	</div>
 	
 </footer>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+<script type="text/javascript">
+	var consulta = window.matchMedia('(max-width: 500px)');
+		consulta.addListener(mediaQuery);
+
+	var $burguerButton = document.getElementById('burguer-button');
+	var $menu = document.getElementById('menu');
+	function toggleMenu(){
+					 menu.classList.toggle('active')		
+				};
+	function showMenu(){
+					 menu.classList.add('active')		
+				};
+	function hideMenu(){
+					 menu.classList.remove('active')		
+				};
+
+	function mediaQuery() {
+		if (consulta.matches) {
+			//si se cumple esto
+				console.log('se cumplió');
+				$burguerButton.addEventListener('touchstart', toggleMenu);
+				
+			}else {
+				$burguerButton.removeEventListener('touchstart', toggleMenu);
+			console.log('No se cumplió');
+		}
+	}
+	
+	mediaQuery();
+	
+	//lazy loading
+	var blazy = new Blazy({
+		selector: 'img'
+	});
+	//gestos touch
+	var $body = document.body;
+
+	var gestos = new Hammer($body);
+	gestos.on('swipeleft', hideMenu);
+	gestos.on('swiperight', showMenu);
+	
+</script>
 </body>
 </html>
