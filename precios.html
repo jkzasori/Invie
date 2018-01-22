@@ -2,16 +2,18 @@
 <html>
 <head>
 	<title>PRECIOS de Tus Mejor Guitarras</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Allerta|Montserrat" rel="stylesheet">
 </head>
-<body>
+<body class="precios">
 	<header id="header" class="header  background">
 		<div class="contenedor">
 			<figure class="logo"><!-- Logo-->
 				<img src="img/invie.png" alt="Invie Logo" width="186" height="60">
 			</figure>
-			<nav class="menu"><!-- Logo-->
+			<span id="burguer-button" class="burguer-button icon-menu "></span>
+			<nav class="menu" id="menu"><!-- Logo-->
 				<ul>
 					<li><a href="index.html">Home</a></li>
 					<li><a href="index.html#guitarras">Guitarrras</a></li>
@@ -22,7 +24,7 @@
 			
 		
 	</header>
-	<section> <!-- Tabla -->
+	<section class="tabla"> <!-- Tabla -->
 		<div class="contenedor">
 			<table class="tabla">
 			<thead>
@@ -30,6 +32,7 @@
 					<th>Modelo</th>
 					<th>Precio</th>
 					<th>Descripción</th>
+					<th>Modelo</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,12 +41,21 @@
 					<td>$XXXX</td>
 					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</td>
+					<td>Invie classic</td>
 				</tr>
 				<tr>
 					<td>Invie classic2</td>
 					<td>$XXXX</td>
 					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</td>
+					<td>Invie classic</td>
+				</tr>
+				<tr>
+					<td>Invie ruda</td>
+					<td>$XXXX</td>
+					<td>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</td>
+					<td>Invie classic</td>
 				</tr>
 			</tbody>
 		</table>
@@ -91,7 +103,7 @@
 			
 			<div class="col2">
 				<label for="comentarios">Comentarios</label>
-				<textarea name="comentarios" id="comentarios" cols="30" rows="7"></textarea>
+				<textarea name="comentarios" id="comentarios" cols="28" rows="7"></textarea>
 				<input class="button" type="submit" name="" value="Enviar">
 			</div>
 			
@@ -99,5 +111,36 @@
 	</div>
 	
 </footer>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
+<script type="text/javascript">
+	var consulta = window.matchMedia('(max-width: 500px)');
+		consulta.addListener(mediaQuery);
+
+	var $burguerButton = document.getElementById('burguer-button');
+	var $menu = document.getElementById('menu');
+	function toggleMenu(){
+					 menu.classList.toggle('active')		
+				};
+
+	function mediaQuery() {
+		if (consulta.matches) {
+			//si se cumple esto
+				console.log('se cumplió');
+				$burguerButton.addEventListener('touchstart', toggleMenu);
+				
+			}else {
+				$burguerButton.removeEventListener('touchstart', toggleMenu);
+			console.log('No se cumplió');
+		}
+	}
+	
+	mediaQuery();
+	
+	//lazy loading
+	var blazy = new Blazy({
+		selector: 'img'
+	});
+
+</script>
 </body>
 </html>
